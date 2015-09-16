@@ -1,4 +1,4 @@
-const char* dgemm_desc = "Simple blocked dgemm.";
+ const char* dgemm_desc = "Simple blocked dgemm.";
 
 #ifndef BLOCK_SIZE
 #define BLOCK_SIZE ((int) 16)
@@ -15,11 +15,25 @@ void basic_dgemm(const int lda, const int M, const int N, const int K,
                  const double *A, const double *B, double *C)
 {
     int i, j, k;
+    double *a = (double*)malloc(sizeof(double) * (M*K))
+    double *b = (double*)malloc(sizeof(double) * (N*K))
+    double *c = (double*)malloc(sizeof(double) * (M*N))
+    
+    for (i = 0; i < M*K; ++i) {
+        a[i]=A[i]
+    }
+    for (i = 0; i < N*K; ++i) {
+        b[i]=B[i]
+    }
+    for (i = 0; i < M*N; ++i) {
+        c[i]=C[i]
+    }
+    
     for (i = 0; i < M; ++i) {
         for (j = 0; j < N; ++j) {
-            double cij = C[j*lda+i];
+            double cij = c[j*lda+i];
             for (k = 0; k < K; ++k) {
-                cij += A[k*lda+i] * B[j*lda+k];
+                cij += a[k*lda+i] * b[j*lda+k];
             }
             C[j*lda+i] = cij;
         }
