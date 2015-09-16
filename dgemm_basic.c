@@ -5,18 +5,18 @@ void square_dgemm(const int M,
 {
     int i, j, k;
     
-    double *a = (double*)malloc(sizeof(double) * (M*K))
-    double *b = (double*)malloc(sizeof(double) * (N*K))
-    double *c = (double*)malloc(sizeof(double) * (M*N))
+    double *a = (double*)malloc(sizeof(double) * (M*M));
+    double *b = (double*)malloc(sizeof(double) * (M*M));
+    double *c = (double*)malloc(sizeof(double) * (M*M));
     
-    for (i = 0; i < M*K; ++i) {
-        a[i]=A[i]
+    for (i = 0; i < M*M; ++i) {
+        a[i]=A[i];
     }
-    for (i = 0; i < N*K; ++i) {
-        b[i]=B[i]
+    for (i = 0; i < M*M; ++i) {
+        b[i]=B[i];
     }
-    for (i = 0; i < M*N; ++i) {
-        c[i]=C[i]
+    for (i = 0; i < M*M; ++i) {
+        c[i]=C[i];
     }
 
     
